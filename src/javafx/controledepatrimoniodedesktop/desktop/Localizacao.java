@@ -33,6 +33,6 @@ public class Localizacao {
     
     @Override
     public String toString(){
-        return "id= " + id + ", nome= " + nome + ", capacidade= " + capacidade;
+        return getId() + getNome() + getCapacidade();
     }
 }

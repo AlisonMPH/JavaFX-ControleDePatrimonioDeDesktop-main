@@ -73,12 +73,6 @@ public class FXMLMenuAlocarDesktop implements Initializable {
         (observable, oldValue, newValue) -> selecionarItemTableViewAlocacao(newValue));
     }    
     
-    /*@FXML
-    public void showFXMLInserirDesktop() throws IOException{
-        System.out.println("\nCarregando Tela FXMLInserirDesktop\n");
-        Button a = (Button) FXMLLoader.load(getClass().getResource("FXMLAlocarDesktopDialog.fxml"));
-        
-    }*/
     public void carregarTableViewAlocacao() {
         tableColumId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumDesktop.setCellValueFactory(new PropertyValueFactory<>("desktop"));
@@ -171,7 +165,7 @@ public class FXMLMenuAlocarDesktop implements Initializable {
         
 
         return controller.isButtonConfirmarClicked();
-   
+        //return true;
 
     }
 

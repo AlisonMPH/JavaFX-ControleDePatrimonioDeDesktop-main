@@ -63,6 +63,12 @@ public class FXMLAlocarDesktopDialogController {
     private ObservableList<Localizacao> observableListLocalizacao;
     
     public void initialize(URL url, ResourceBundle rb) {
+       desktopDAO.setConnection(connection);
+       usuarioDAO.setConnection(connection);
+       localizacaoDAO.setConnection(connection);
+       carregarComboBoxDesktop();
+       carregarComboBoxUsuario();
+       carregarComboBoxLocalizacao();
        
     }
 
@@ -80,9 +86,6 @@ public class FXMLAlocarDesktopDialogController {
 
     public void setAlocacao(Alocacao alocacao) {
         this.alocacao = alocacao;
-        this.textAlocacaoDesktop.setText(alocacao.getDesktop());
-        this.comboBoxLocalizacao.setText(alocacao.getLocalizacao());
-        this.comboBoxUsuario.setText(alocacao.getUsuario());
     }
 
     public boolean isButtonConfirmarClicked() {
@@ -92,9 +95,9 @@ public class FXMLAlocarDesktopDialogController {
     @FXML
     public void handleButtonConfirmar() {
         if (validarEntradaDeDados()) {
-            alocacao.setDesktop(textAlocacaoDesktop.getText());
-            alocacao.setLocalizacao(comboBoxLocalizacao.getText());
-            alocacao.setUsuario(comboBoxUsuario.getText());
+            alocacao.setDesktop((Desktop) comboBoxDesktop.getSelectionModel().getSelectedItem());
+            alocacao.setLocalizacao((Localizacao) comboBoxLocalizacao.getSelectionModel().getSelectedItem());
+            alocacao.setUsuario((Usuario) comboBoxUsuario.getSelectionModel().getSelectedItem());
             
             buttonConfirmarClicked = true;
             dialogStage.close();
@@ -110,14 +113,14 @@ public class FXMLAlocarDesktopDialogController {
     private boolean validarEntradaDeDados() {
         String errorMessage = "";
 
-        if (textAlocacaoDesktop.getText() == null || textAlocacaoDesktop.getText().length() == 0) {
-            errorMessage += "Desktop inválido!\n";
+        if (comboBoxDesktop.getSelectionModel().getSelectedItem() == null) {
+            errorMessage += "Selecione um Desktop!\n";
         }
-        if (textAlocacaoLocalizacao.getText() == null || textAlocacaoLocalizacao.getText().length() == 0) {
-            errorMessage += "Localizacao inválida!\n";
+        if (comboBoxUsuario.getSelectionModel().getSelectedItem() == null) {
+            errorMessage += "Selecione um Usuario!\n";
         }
-        if (textAlocacaoUsuario.getText() == null || textAlocacaoUsuario.getText().length() == 0) {
-            errorMessage += "Usuario inválido!\n";
+        if (comboBoxLocalizacao.getSelectionModel().getSelectedItem() == null) {
+            errorMessage += "Selecione uma Localizacao!\n";
         }
 
         if (errorMessage.length() == 0) {
@@ -125,8 +128,8 @@ public class FXMLAlocarDesktopDialogController {
         } else {
             // Mostrando a mensagem de erro
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro no cadastro");
-            alert.setHeaderText("Campos inválidos, por favor, corrija...");
+            alert.setTitle("Erro na Alocação");
+            alert.setHeaderText("Campo(s) não selecionado(s), por favor, corrija...");
             alert.setContentText(errorMessage);
             alert.show();
             return false;

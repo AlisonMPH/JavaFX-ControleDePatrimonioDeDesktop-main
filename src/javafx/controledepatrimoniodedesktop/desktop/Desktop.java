@@ -57,5 +57,9 @@ public class Desktop {
     public void setId(int id) {
         this.id = id;
     }
+    @Override
+    public String toString() {
+        return getNome() + getId() + getMac() + getServicetag() + getFabricante() + getModelo();
+    }
     
 }
