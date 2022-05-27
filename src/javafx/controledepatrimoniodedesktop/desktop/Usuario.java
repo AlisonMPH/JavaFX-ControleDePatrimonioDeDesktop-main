@@ -22,8 +22,4 @@ public class Usuario {
         this.nome = nome;
     }
     
-    @Override
-    public String toString(){
-        return "id= " + ", nome= " + nome;
-    }
 }

@@ -61,8 +61,8 @@
                   </GridPane>
                   <Group layoutX="60.0" layoutY="322.0">
                      <children>
-                        <Button fx:id="buttonInserir" layoutX="-15.0" layoutY="-23.0" minHeight="20.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleButtonInserir" text="Inserir" />
-                        <Button fx:id="buttonAlterar" layoutX="55.0" layoutY="-23.0" minHeight="20.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleButtonAlterar" text="Alterar" />
+                        <Button fx:id="buttonInserir" layoutX="-15.0" layoutY="-23.0" minHeight="20.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleButtonInserirAlocacao" text="Inserir" />
+                        <Button fx:id="buttonAlterar" layoutX="55.0" layoutY="-23.0" minHeight="20.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleButtonAlterarAlocacao" text="Alterar" />
                         <Button fx:id="buttonRemover" layoutX="125.0" layoutY="-23.0" minHeight="20.0" minWidth="60.0" mnemonicParsing="false" text="Remover" />
                      </children>
                   </Group>

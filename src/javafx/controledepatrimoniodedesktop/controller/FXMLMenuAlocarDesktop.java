@@ -103,8 +103,9 @@ public class FXMLMenuAlocarDesktop implements Initializable {
         }
     }
     @FXML
-    public void handleButtonInserir() throws IOException {
+    public void handleButtonInserirAlocacao() throws IOException {
         Alocacao alocacao = new Alocacao();
+        System.out.println("javafx.controledepatrimoniodedesktop.controller.FXMLMenuAlocarDesktop.handleButtonInserir()");
         boolean buttonConfirmarClicked = showFXMLAlocarDesktopDialog(alocacao);
         if (buttonConfirmarClicked) {
             alocacaoDAO.inserir(alocacao);
@@ -113,8 +114,9 @@ public class FXMLMenuAlocarDesktop implements Initializable {
     }
 
     @FXML
-    public void handleButtonAlterar() throws IOException {
+    public void handleButtonAlterarAlocacao() throws IOException {
         Alocacao alocacao = tableView.getSelectionModel().getSelectedItem();//obtendo o desktop selecionado
+        System.out.println("javafx.controledepatrimoniodedesktop.controller.FXMLMenuAlocarDesktop.handleButtonAlterar()");
         if (alocacao != null) {
             boolean buttonConfirmarClicked = showFXMLAlocarDesktopDialog(alocacao);
             if (buttonConfirmarClicked) {
@@ -123,7 +125,7 @@ public class FXMLMenuAlocarDesktop implements Initializable {
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Escolha um desktop na Tabela!");
+            alert.setContentText("Escolha um item na Tabela!");
             alert.show();
         }
     }
