@@ -48,4 +48,11 @@ public class FXMLMenuController implements Initializable {
         anchorPane.getChildren().setAll(a);
     }
     
+    @FXML
+    public void showFXMLMenuRelarotorio() throws IOException{
+        System.out.println("\nCarregando Tela FXMLMenuRelatorio\n");
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/javafx/controledepatrimoniodedesktop/view/FXMLRelatorio.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
 }

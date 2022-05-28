@@ -92,6 +92,26 @@ public class AlocacaoDAO {
         }
         return retorno;
     }
+    
+    public List<Alocacao> listarRelatorio() {
+        String sql = "SELECT * FROM \"ALOCACAO\"";
+        
+        List<Alocacao> retorno = new ArrayList<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Alocacao alocacao = new Alocacao();
+                alocacao.setDesktop(resultado.getString("DESKTOP_ALOCACAO"));
+                alocacao.setLocalizacao(resultado.getString("LOCALIZACAO_ALOCACAO"));
+                alocacao.setUsuario(resultado.getString("USUARIO_ALOCACAO"));
+                retorno.add(alocacao);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AlocacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
 
     
 

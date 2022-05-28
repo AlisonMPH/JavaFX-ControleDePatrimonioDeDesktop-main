@@ -67,9 +67,8 @@ public class FXMLAlocarDesktopDialogController {
        usuarioDAO.setConnection(connection);
        localizacaoDAO.setConnection(connection);
        carregarComboBoxDesktop();
-       carregarComboBoxUsuario();
        carregarComboBoxLocalizacao();
-       
+       carregarComboBoxUsuario();
     }
 
     public Stage getDialogStage() {
@@ -95,9 +94,9 @@ public class FXMLAlocarDesktopDialogController {
     @FXML
     public void handleButtonConfirmar() {
         if (validarEntradaDeDados()) {
-            alocacao.setDesktop((Desktop) comboBoxDesktop.getSelectionModel().getSelectedItem());
+           /* alocacao.setDesktop((Desktop) comboBoxDesktop.getSelectionModel().getSelectedItem());
             alocacao.setLocalizacao((Localizacao) comboBoxLocalizacao.getSelectionModel().getSelectedItem());
-            alocacao.setUsuario((Usuario) comboBoxUsuario.getSelectionModel().getSelectedItem());
+            alocacao.setUsuario((Usuario) comboBoxUsuario.getSelectionModel().getSelectedItem());*/
             
             buttonConfirmarClicked = true;
             dialogStage.close();
