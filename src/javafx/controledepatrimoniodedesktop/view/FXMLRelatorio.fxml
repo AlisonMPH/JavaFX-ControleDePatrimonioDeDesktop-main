@@ -5,8 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="javafx.controledepatrimoniodedesktop.controller.FXMLRelatorioController">
+<AnchorPane id="AnchorPane" prefHeight="409.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.controledepatrimoniodedesktop.controller.FXMLRelatorioController">
    <children>
       <TableView fx:id="tableViewRelatorio" layoutX="71.0" layoutY="33.0" prefHeight="366.0" prefWidth="600.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
@@ -21,6 +20,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="buttonImprimir" layoutX="533.0" layoutY="370.0" mnemonicParsing="false" text="Imprimir" />
+      <Button fx:id="buttonImprimir" layoutX="531.0" layoutY="378.0" mnemonicParsing="false" text="Imprimir" />
    </children>
 </AnchorPane>

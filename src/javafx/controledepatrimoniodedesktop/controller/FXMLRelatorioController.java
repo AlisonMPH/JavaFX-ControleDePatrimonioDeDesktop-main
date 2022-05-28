@@ -28,14 +28,14 @@ public class FXMLRelatorioController implements Initializable {
     @FXML
     private TableColumn<Alocacao,String> tableColumLocalizacao;
 
-    @FXML
+    /*@FXML
     private TableColumn<Alocacao,String> tableColumMac;
 
     @FXML
     private TableColumn<Alocacao,String> tableColumModelo;
 
     @FXML
-    private TableColumn<Alocacao,String> tableColumServicetag;
+    private TableColumn<Alocacao,String> tableColumServicetag;*/
 
     @FXML
     private TableColumn<Alocacao,String> tableColumUsuario;
@@ -55,20 +55,29 @@ public class FXMLRelatorioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         alocacaoDAO.setConnection (connection);
+        carregarTableViewAlocacao();
     }
     
-    public void carregarTableViewProdutos() {
+    public void carregarTableViewAlocacao() {
         tableColumDesktop.setCellValueFactory(new PropertyValueFactory<>("DESKTOP_ALOCACAO"));
         tableColumLocalizacao.setCellValueFactory(new PropertyValueFactory<>("LOCALIZACAO_ALOCACAO"));
         tableColumUsuario.setCellValueFactory(new PropertyValueFactory<>("USUARIO_ALOCACAO"));
-        tableColumMac.setCellValueFactory(new PropertyValueFactory<>("MAC"));
+        /*tableColumMac.setCellValueFactory(new PropertyValueFactory<>("MAC"));
         tableColumModelo.setCellValueFactory(new PropertyValueFactory<>("MODELO"));
-        tableColumServicetag.setCellValueFactory(new PropertyValueFactory<>("SERVICETAG"));
+        tableColumServicetag.setCellValueFactory(new PropertyValueFactory<>("SERVICETAG"));*/
 
-        listAlocacao = alocacaoDAO.listarRelatorio();
+        listAlocacao = alocacaoDAO.listar();
 
         observableListAlocacao = FXCollections.observableArrayList(listAlocacao);
         tableViewRelatorio.setItems(observableListAlocacao);
+    }
+    public void handleImprimir() throws JRException{
+        URL url = getClass().getResource("/javafx/relatorios/x.jasper");
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url);
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);//null: caso não existam filtros
+        JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);//false: não deixa fechar a aplicação principal
+        jasperViewer.setVisible(true);
     }
 
 }
