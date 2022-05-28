@@ -19,7 +19,7 @@
           <Menu mnemonicParsing="false" text="Mostrar">
             <items>
                   <MenuItem fx:id="menuMostrarGrafico" mnemonicParsing="false" text="Gráfico" />
-              <MenuItem fx:id="menuMostrarRelatorio" mnemonicParsing="false" onAction="#showFXMLMenuRelarotorio" text="Relatório" />
+              <MenuItem fx:id="menuMostrarRelatorio" mnemonicParsing="false" onAction="#showFXMLMenuRelatorio" text="Relatório" />
             </items>
           </Menu>
         </menus>
