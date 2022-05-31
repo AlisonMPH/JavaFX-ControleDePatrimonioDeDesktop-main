@@ -43,22 +43,22 @@ public class FXMLRelatorioController implements Initializable {
     private Button buttonImprimir;
 
     @FXML
-    private TableColumn<Alocacao,Desktop> tableColumDesktop;
+    private TableColumn<Desktop, String> tableColumDesktop;
 
     @FXML
-    private TableColumn<Alocacao,Localizacao> tableColumLocalizacao;
+    private TableColumn<Localizacao, String> tableColumLocalizacao;
 
     @FXML
-    private TableColumn<Alocacao,String> tableColumMac;
+    private TableColumn<Desktop,String> tableColumMac;
 
     @FXML
-    private TableColumn<Alocacao,String> tableColumModelo;
+    private TableColumn<Desktop,String> tableColumModelo;
 
     @FXML
-    private TableColumn<Alocacao,String> tableColumServicetag;
+    private TableColumn<Desktop,String> tableColumServicetag;
 
     @FXML
-    private TableColumn<Alocacao,Usuario> tableColumUsuario;
+    private TableColumn<Usuario,String> tableColumUsuario;
 
     @FXML
     private TableView<Alocacao> tableViewRelatorio;
