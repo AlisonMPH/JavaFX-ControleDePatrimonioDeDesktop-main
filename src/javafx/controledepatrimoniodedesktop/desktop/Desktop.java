@@ -1,8 +1,10 @@
 
 package javafx.controledepatrimoniodedesktop.desktop;
 
+import java.io.Serializable;
 
-public class Desktop {
+
+public class Desktop implements Serializable{
     private int id;
     private String nome;
     private String servicetag;
@@ -10,6 +12,9 @@ public class Desktop {
     private String modelo;
     private String mac;
 
+    public Desktop(){
+    }
+    
     public String getMac() {
         return mac;
     }
@@ -59,7 +64,7 @@ public class Desktop {
     }
     @Override
     public String toString() {
-        return getNome() + getId() + getMac() + getServicetag() + getFabricante() + getModelo();
+        return getNome();
     }
     
 }

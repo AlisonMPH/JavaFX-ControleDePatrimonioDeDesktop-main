@@ -42,5 +42,23 @@ private Connection connection;
         return retorno;
     }
 
+    public Usuario buscar(Usuario usuario) {
+        String sql = "SELECT * FROM \"USUARIO\" WHERE \"ID_USUARIO\"=?";
+        Usuario retorno = new Usuario();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, usuario.getId());
+            ResultSet resultado = stmt.executeQuery();
+            if (resultado.next()) {
+                usuario.setId(resultado.getInt("ID_USUARIO"));
+                usuario.setNome(resultado.getString("NOME_USUARIO"));
+                retorno = usuario;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+
 }
 

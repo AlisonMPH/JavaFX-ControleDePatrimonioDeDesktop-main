@@ -1,10 +1,10 @@
-
 package javafx.controledepatrimoniodedesktop.controller;
 
+import java.util.ArrayList;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -13,20 +13,19 @@ import javafx.controledepatrimoniodedesktop.desktop.Alocacao;
 import javafx.controledepatrimoniodedesktop.desktop.Desktop;
 import javafx.controledepatrimoniodedesktop.desktop.Localizacao;
 import javafx.controledepatrimoniodedesktop.desktop.Usuario;
+import javafx.controledepatrimoniodedesktop.model.dao.AlocacaoDAO;
 import javafx.controledepatrimoniodedesktop.model.dao.DesktopDAO;
 import javafx.controledepatrimoniodedesktop.model.dao.LocalizacaoDAO;
 import javafx.controledepatrimoniodedesktop.model.dao.UsuarioDAO;
 import javafx.controledepatrimoniodedesktop.model.database.Database;
 import javafx.controledepatrimoniodedesktop.model.database.DatabaseFactory;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
-import javafx.stage.Stage;
 
-public class FXMLAlocarDesktopDialogController {
-    
+public class FXMLAlocarDesktopDialogController implements Initializable {
+
     @FXML
     private Button buttonConfirmar;
 
@@ -41,34 +40,42 @@ public class FXMLAlocarDesktopDialogController {
 
     @FXML
     private ComboBox<Desktop> comboBoxDesktop;
-    
+
     //Atributos para manipulação de Banco de Dados
     private final Database database = DatabaseFactory.getDatabase("postgresql");
     private final Connection connection = database.conectar();
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final LocalizacaoDAO localizacaoDAO = new LocalizacaoDAO();
     private final DesktopDAO desktopDAO = new DesktopDAO();
-    
+    private final AlocacaoDAO alocacaoDAO = new AlocacaoDAO();
+
     private Stage dialogStage;
     private boolean buttonConfirmarClicked = false;
     private Alocacao alocacao;
-    
+
+    private List<Alocacao> listAlocacao = new ArrayList<>();
+    private ObservableList<Alocacao> observableListAlocacao;
+
     private List<Desktop> listDesktop = new ArrayList<>();
     private ObservableList<Desktop> observableListDesktop;
-    
+
     private List<Usuario> listUsuario = new ArrayList<>();
     private ObservableList<Usuario> observableListUsuario;
-    
+
     private List<Localizacao> listLocalizacao = new ArrayList<>();
     private ObservableList<Localizacao> observableListLocalizacao;
-    
+
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-       desktopDAO.setConnection(connection);
-       usuarioDAO.setConnection(connection);
-       localizacaoDAO.setConnection(connection);
-       carregarComboBoxDesktop();
-       carregarComboBoxLocalizacao();
-       carregarComboBoxUsuario();
+        alocacaoDAO.setConnection(connection);
+        desktopDAO.setConnection(connection);
+        usuarioDAO.setConnection(connection);
+        localizacaoDAO.setConnection(connection);
+        carregarComboBoxDesktop();
+        carregarComboBoxLocalizacao();
+        carregarComboBoxUsuario();
+        System.out.println(listLocalizacao);
+
     }
 
     public Stage getDialogStage() {
@@ -93,11 +100,11 @@ public class FXMLAlocarDesktopDialogController {
 
     @FXML
     public void handleButtonConfirmar() {
+
         if (validarEntradaDeDados()) {
-           /* alocacao.setDesktop((Desktop) comboBoxDesktop.getSelectionModel().getSelectedItem());
+            alocacao.setDesktop((Desktop) comboBoxDesktop.getSelectionModel().getSelectedItem());
             alocacao.setLocalizacao((Localizacao) comboBoxLocalizacao.getSelectionModel().getSelectedItem());
-            alocacao.setUsuario((Usuario) comboBoxUsuario.getSelectionModel().getSelectedItem());*/
-            
+            alocacao.setUsuario((Usuario) comboBoxUsuario.getSelectionModel().getSelectedItem());
             buttonConfirmarClicked = true;
             dialogStage.close();
         }
@@ -134,28 +141,27 @@ public class FXMLAlocarDesktopDialogController {
             return false;
         }
     }
-    
-    public void carregarComboBoxDesktop(){
+
+    public void carregarComboBoxDesktop() {
         listDesktop = desktopDAO.listar();
-        
+
         observableListDesktop = FXCollections.observableArrayList(listDesktop);
         comboBoxDesktop.setItems(observableListDesktop);
     }
-    
-    public void carregarComboBoxUsuario(){
+
+    public void carregarComboBoxUsuario() {
         listUsuario = usuarioDAO.listar();
-        
+
         observableListUsuario = FXCollections.observableArrayList(listUsuario);
         comboBoxUsuario.setItems(observableListUsuario);
     }
-    
-    public void carregarComboBoxLocalizacao(){
+
+    public void carregarComboBoxLocalizacao() {
         listLocalizacao = localizacaoDAO.listar();
-        
+        System.out.println(listLocalizacao);
         observableListLocalizacao = FXCollections.observableArrayList(listLocalizacao);
         comboBoxLocalizacao.setItems(observableListLocalizacao);
+
     }
 
-    
 }
-

@@ -1,35 +1,20 @@
 
 package javafx.controledepatrimoniodedesktop.desktop;
 
+import java.io.Serializable;
 
-public class Alocacao {
+
+public class Alocacao implements Serializable{
     private int id;
-    private String desktop;
-    private String localizacao;
-    private String usuario;
+    private Desktop desktop;
+    private Localizacao localizacao;
+    private Usuario usuario;
 
-    public String getDesktop() {
-        return desktop;
+    public Alocacao(){
     }
-
-    public void setDesktop(String desktop) {
-        this.desktop = desktop;
-    }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    
+    public Alocacao(int id){
+        this.id = id;
     }
     
     public int getId() {
@@ -39,4 +24,29 @@ public class Alocacao {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Desktop getDesktop() {
+        return desktop;
+    }
+
+    public void setDesktop(Desktop desktop) {
+        this.desktop = desktop;
+    }
+
+    public Localizacao getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
 }

@@ -1,10 +1,15 @@
 
 package javafx.controledepatrimoniodedesktop.desktop;
 
+import java.io.Serializable;
 
-public class Usuario {
+
+public class Usuario implements Serializable{
     private int id;
     private String nome;
+    
+    public Usuario(){
+    }
 
     public int getId() {
         return id;
@@ -23,7 +28,7 @@ public class Usuario {
     }
     @Override
     public String toString() {
-        return getNome() + getId();
+        return getNome();
     }
     
 }

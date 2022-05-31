@@ -30,7 +30,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Nome" />
+            <Label text="Desktop" />
             <Label text="Localizacao" GridPane.rowIndex="1" />
             <Label text="Usuario" GridPane.rowIndex="2" />
             <ComboBox fx:id="comboBoxLocalizacao" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />

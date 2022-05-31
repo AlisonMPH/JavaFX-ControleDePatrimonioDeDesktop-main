@@ -41,7 +41,7 @@ private Connection connection;
     }
 
     public boolean alterar(Desktop desktop) {
-        String sql = "UPDATE \"DESKTOP\" SET \"NOME\"=?,\"FABRICANTE\"=?,\"SERVICETAG\"=?,\"MODELO\"=?,\"MAC\"=? WHERE \"ID\"=?";
+        String sql = "UPDATE \"DESKTOP\" SET \"NOME\"=?,\"FABRICANTE\"=?,\"SERVICETAG\"=?,\"MODELO\"=?,\"MAC\"=? WHERE \"ID_DESKTOP\"=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, desktop.getNome());
@@ -59,7 +59,7 @@ private Connection connection;
     }
 
     public boolean remover(Desktop desktop) {
-        String sql = "DELETE FROM \"DESKTOP\" WHERE \"ID\"=?";
+        String sql = "DELETE FROM \"DESKTOP\" WHERE \"ID_DESKTOP\"=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, desktop.getId());
@@ -79,7 +79,7 @@ private Connection connection;
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Desktop desktop = new Desktop();
-                desktop.setId(resultado.getInt("id"));
+                desktop.setId(resultado.getInt("ID_DESKTOP"));
                 desktop.setNome(resultado.getString("nome"));
                 desktop.setFabricante(resultado.getString("fabricante"));
                 desktop.setServicetag(resultado.getString("servicetag"));
@@ -94,7 +94,7 @@ private Connection connection;
     }
 
     public Desktop buscar(Desktop desktop) {
-        String sql = "SELECT * FROM \"DESKTOP\" WHERE \"ID\"=?";
+        String sql = "SELECT * FROM \"DESKTOP\" WHERE \"ID_DESKTOP\"=?";
         Desktop retorno = new Desktop();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);

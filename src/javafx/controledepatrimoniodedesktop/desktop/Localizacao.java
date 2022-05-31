@@ -1,11 +1,16 @@
 
 package javafx.controledepatrimoniodedesktop.desktop;
 
+import java.io.Serializable;
 
-public class Localizacao {
+
+public class Localizacao implements Serializable{
        private int id;
        private String nome;
        private int capacidade;
+       
+    public Localizacao(){
+    }
 
     public int getId() {
         return id;
@@ -33,6 +38,6 @@ public class Localizacao {
     
     @Override
     public String toString(){
-        return getId() + getNome() + getCapacidade();
+        return getNome();
     }
 }

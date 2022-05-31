@@ -1,4 +1,3 @@
-
 package javafx.controledepatrimoniodedesktop.controller;
 
 import java.io.IOException;
@@ -9,7 +8,13 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.controledepatrimoniodedesktop.desktop.Alocacao;
+import javafx.controledepatrimoniodedesktop.desktop.Desktop;
+import javafx.controledepatrimoniodedesktop.desktop.Localizacao;
+import javafx.controledepatrimoniodedesktop.desktop.Usuario;
 import javafx.controledepatrimoniodedesktop.model.dao.AlocacaoDAO;
+import javafx.controledepatrimoniodedesktop.model.dao.DesktopDAO;
+import javafx.controledepatrimoniodedesktop.model.dao.LocalizacaoDAO;
+import javafx.controledepatrimoniodedesktop.model.dao.UsuarioDAO;
 import javafx.controledepatrimoniodedesktop.model.database.Database;
 import javafx.controledepatrimoniodedesktop.model.database.DatabaseFactory;
 import javafx.fxml.FXML;
@@ -26,7 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class FXMLMenuAlocarDesktop implements Initializable {
-    
+
     @FXML
     private TableView<Alocacao> tableView;
 
@@ -38,7 +43,7 @@ public class FXMLMenuAlocarDesktop implements Initializable {
 
     @FXML
     private Label labelUsuario;
-    
+
     @FXML
     private Button buttonAlterar;
 
@@ -49,57 +54,70 @@ public class FXMLMenuAlocarDesktop implements Initializable {
     private TableColumn<Alocacao, Integer> tableColumId;
 
     @FXML
-    private TableColumn<Alocacao, String> tableColumDesktop;
-    
+    private TableColumn<Desktop, String> tableColumDesktop;
+
     @FXML
-    private TableColumn<Alocacao, String> tableColumLocalizacao;
-    
+    private TableColumn<Localizacao, String> tableColumLocalizacao;
+
     @FXML
-    private TableColumn<Alocacao, String> tableColumUsuario;
+    private TableColumn<Usuario, String> tableColumUsuario;
 
     private List<Alocacao> listAlocacao;
     private ObservableList<Alocacao> observableListAlocacao;
 
+    private List<Localizacao> listLocalizacao;
+    private ObservableList<Localizacao> observableListLocalizacao;
+
+    private List<Usuario> listUsuario;
+    private ObservableList<Localizacao> observableListUsuario;
+
+    private List<Desktop> listDesktop;
+    private ObservableList<Localizacao> observableListDesktop;
+
     private final Database database = DatabaseFactory.getDatabase("postgresql");
     private final Connection connection = database.conectar();
     private final AlocacaoDAO alocacaoDAO = new AlocacaoDAO();
-    
+    private final LocalizacaoDAO localizacaoDAO = new LocalizacaoDAO();
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private final DesktopDAO desktopDAO = new DesktopDAO();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        alocacaoDAO.setConnection (connection);
+        alocacaoDAO.setConnection(connection);
         carregarTableViewAlocacao();
         selecionarItemTableViewAlocacao(null);
         tableView.getSelectionModel().selectedItemProperty().addListener(
-        (observable, oldValue, newValue) -> selecionarItemTableViewAlocacao(newValue));
-    }    
-    
+                (observable, oldValue, newValue) -> selecionarItemTableViewAlocacao(newValue));
+    }
+
     public void carregarTableViewAlocacao() {
+
         tableColumId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableColumDesktop.setCellValueFactory(new PropertyValueFactory<>("desktop"));
         tableColumLocalizacao.setCellValueFactory(new PropertyValueFactory<>("localizacao"));
         tableColumUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
-        
-        listAlocacao = alocacaoDAO.listar();
 
+        listAlocacao = alocacaoDAO.listar();
+        System.out.println(listAlocacao);
         observableListAlocacao = FXCollections.observableArrayList(listAlocacao);
         tableView.setItems(observableListAlocacao);
     }
-    
+
     public void selecionarItemTableViewAlocacao(Alocacao alocacao) {
         if (alocacao != null) {
-            labelDesktop.setText(alocacao.getDesktop());
-            labelLocalizacao.setText(alocacao.getLocalizacao());
-            labelUsuario.setText(alocacao.getUsuario());
+            labelDesktop.setText(alocacao.getDesktop().toString());
+            labelLocalizacao.setText(alocacao.getLocalizacao().toString());
+            labelUsuario.setText(alocacao.getUsuario().toString());
         } else {
             labelDesktop.setText("");
             labelLocalizacao.setText("");
             labelUsuario.setText("");
         }
     }
+
     @FXML
     public void handleButtonInserirAlocacao() throws IOException {
         Alocacao alocacao = new Alocacao();
-        System.out.println("javafx.controledepatrimoniodedesktop.controller.FXMLMenuAlocarDesktop.handleButtonInserir()");
         boolean buttonConfirmarClicked = showFXMLAlocarDesktopDialog(alocacao);
         if (buttonConfirmarClicked) {
             alocacaoDAO.inserir(alocacao);
@@ -110,7 +128,7 @@ public class FXMLMenuAlocarDesktop implements Initializable {
     @FXML
     public void handleButtonAlterarAlocacao() throws IOException {
         Alocacao alocacao = tableView.getSelectionModel().getSelectedItem();//obtendo o desktop selecionado
-        System.out.println("javafx.controledepatrimoniodedesktop.controller.FXMLMenuAlocarDesktop.handleButtonAlterar()");
+        System.out.println("Alterar Alocacao");
         if (alocacao != null) {
             boolean buttonConfirmarClicked = showFXMLAlocarDesktopDialog(alocacao);
             if (buttonConfirmarClicked) {
@@ -136,7 +154,6 @@ public class FXMLMenuAlocarDesktop implements Initializable {
             alert.show();
         }
     }*/
-    
     public boolean showFXMLAlocarDesktopDialog(Alocacao alocacao) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(FXMLAlocarDesktopDialogController.class.getResource("/javafx/controledepatrimoniodedesktop/view/FXMLAlocarDesktopDialog.fxml"));
@@ -145,11 +162,10 @@ public class FXMLMenuAlocarDesktop implements Initializable {
         dialogStage.setTitle("Alocacao de Desktop");
         //Especifica a modalidade para esta fase . Isso deve ser feito antes de fazer o estágio visível. A modalidade pode ser: Modality.NONE , Modality.WINDOW_MODAL , ou Modality.APPLICATION_MODAL 
         //dialogStage.initModality(Modality.WINDOW_MODAL);//WINDOW_MODAL (possibilita minimizar)
-        
+
         //Especifica a janela do proprietário para esta página, ou null para um nível superior.
         //dialogStage.initOwner(null); //null deixa a Tela Principal livre para ser movida
         //dialogStage.initOwner(this.tableViewClientes.getScene().getWindow()); //deixa a tela de Preenchimento dos dados como prioritária
-        
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
 
@@ -160,9 +176,8 @@ public class FXMLMenuAlocarDesktop implements Initializable {
 
         //Mostra o Dialog e espera até que o usuário o feche
         dialogStage.setFocused(true);
-        
+
         dialogStage.showAndWait();
-        
 
         return controller.isButtonConfirmarClicked();
         //return true;
@@ -170,5 +185,3 @@ public class FXMLMenuAlocarDesktop implements Initializable {
     }
 
 }
-
-
