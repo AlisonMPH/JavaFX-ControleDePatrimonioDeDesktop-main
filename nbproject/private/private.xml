@@ -4,13 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/model/dao/AlocacaoDAO.java</file>
-            <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/model/dao/UsuarioDAO.java</file>
             <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/desktop/Alocacao.java</file>
-            <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/desktop/Desktop.java</file>
+            <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/model/dao/DesktopDAO.java</file>
             <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/controller/FXMLRelatorioController.java</file>
-            <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/controller/FXMLMenuCadastrosDesktopController.java</file>
-            <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/controller/FXMLAlocarDesktopDialogController.java</file>
             <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/desktop/Usuario.java</file>
+            <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/desktop/Localizacao.java</file>
             <file>file:/C:/estudo/netbeans/JavaFX-ControleDePatrimonioDeDesktop-main/src/javafx/controledepatrimoniodedesktop/controller/FXMLMenuAlocarDesktop.java</file>
         </group>
     </open-files>
