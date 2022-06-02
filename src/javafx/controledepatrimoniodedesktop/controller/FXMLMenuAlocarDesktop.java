@@ -125,7 +125,7 @@ public class FXMLMenuAlocarDesktop implements Initializable {
         }
     }
 
-    @FXML
+    /*@FXML
     public void handleButtonAlterarAlocacao() throws IOException {
         Alocacao alocacao = tableView.getSelectionModel().getSelectedItem();//obtendo o desktop selecionado
         System.out.println("Alterar Alocacao");
@@ -140,20 +140,20 @@ public class FXMLMenuAlocarDesktop implements Initializable {
             alert.setContentText("Escolha um item na Tabela!");
             alert.show();
         }
-    }
+    }*/
 
-    /*@FXML
+    @FXML
     public void handleButtonRemoverAlocacao() throws IOException {
         Alocacao alocacao = tableView.getSelectionModel().getSelectedItem();
         if (alocacao != null) {
-            desktopDAO.remover(alocacao);
+            alocacaoDAO.remover(alocacao);
             carregarTableViewAlocacao();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Escolha um desktop na Tabela!");
+            alert.setContentText("Escolha a Alocação na Tabela!");
             alert.show();
         }
-    }*/
+    }
     public boolean showFXMLAlocarDesktopDialog(Alocacao alocacao) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(FXMLAlocarDesktopDialogController.class.getResource("/javafx/controledepatrimoniodedesktop/view/FXMLAlocarDesktopDialog.fxml"));
