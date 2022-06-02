@@ -128,7 +128,6 @@ public class FXMLAlocarDesktopDialogController implements Initializable {
         if (comboBoxLocalizacao.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "Selecione uma Localizacao!\n";
         }
-
         if (errorMessage.length() == 0) {
             return true;
         } else {

@@ -2,9 +2,11 @@
 package javafx.controledepatrimoniodedesktop.desktop;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public class Alocacao implements Serializable{
+    
     private int id;
     private Desktop desktop;
     private Localizacao localizacao;
@@ -48,5 +50,8 @@ public class Alocacao implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
+    /*public List<Alocacao>(){
+        return getDesktop()+getLocalizacao()+getUsuario();
+    }*/
+    
 }

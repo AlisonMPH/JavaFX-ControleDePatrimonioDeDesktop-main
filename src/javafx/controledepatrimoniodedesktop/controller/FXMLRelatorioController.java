@@ -85,13 +85,13 @@ public class FXMLRelatorioController implements Initializable {
         alocacaoDAO.setConnection (connection);
         localizacaoDAO.setConnection (connection);
         usuarioDAO.setConnection(connection);
+        desktopDAO.setConnection(connection);
         carregarTableViewAlocacao();
         carregarComboBoxLocalizacao();
         
     }
     
     public void carregarTableViewAlocacao() {
-        alocacaoDAO.setConnection(connection);
         
         tableColumDesktop.setCellValueFactory(new PropertyValueFactory<>("FK_DESKTOP_ALOCACAO"));
         tableColumLocalizacao.setCellValueFactory(new PropertyValueFactory<>("FK_LOCALIZACAO_ALOCACAO"));
@@ -106,7 +106,7 @@ public class FXMLRelatorioController implements Initializable {
         tableViewRelatorio.setItems(observableListAlocacao);
     }
     public void handleImprimir() throws JRException{
-        URL url = getClass().getResource("/javafx/relatorios/x.jasper");
+        URL url = getClass().getResource("/javafx/controledepatrimoniodedesktop/relatorios/CONTROLE.jasper");
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url);
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);//null: caso não existam filtros
@@ -124,7 +124,7 @@ public class FXMLRelatorioController implements Initializable {
         //Como não será possível alterar uma Venda, não precisaremos implementar a seleção do cliente (caso seja uma alteração de venda)
         
     }
-    public void filtrarLocalizacao(){
+    public void filtrarPorLocalizacao(){
         
     }
     
